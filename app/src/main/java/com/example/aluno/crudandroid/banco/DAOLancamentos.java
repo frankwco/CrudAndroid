@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.aluno.crudandroid.Lancamento;
 
@@ -19,10 +20,11 @@ public class DAOLancamentos {
     SQLiteDatabase database;
 
     public DAOLancamentos(Context context){
-        database = new BDCore(context).getReadableDatabase();
+        database = new BDCore(context).getWritableDatabase();
     }
 
     public void inserir(Lancamento lancamento){
+        Log.i("DAOLancamentos",lancamento.getDescricao());
         ContentValues values = new ContentValues();
         values.put("descricao",lancamento.getDescricao());
         values.put("tipo_lancamento",lancamento.getTipoLancamento());
